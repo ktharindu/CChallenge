@@ -1,5 +1,5 @@
 INTRODUCTION
-This is a Spring MVC(3.1) one page web application that uses a document-oriented database (MongoDB) as its persistence layer. Spring Data MongoDB is used to simplify the development with MongoDB access and AJAX is used to avoid page refreshes.
+This is a one page Spring MVC(3.1) web application with the document-oriented database (MongoDB) as its persistence layer. Spring Data MongoDB is used to simplify the development with MongoDB access and AJAX is used to avoid page refreshes.
 Here it displays a short list of school results in tabular form filtered by either Numeracy, Spelling or Reading. Filtering can be applied by selecting from a subject drop-down, resulting in a change of table content.
 Also sorting can be done on each table header by either in ascending or descending order based on subject selection.
 
@@ -12,14 +12,14 @@ Below is the sample Json structure of the School and Result documents.
 {
   "_id" : "1126282f-29f6-4234-a132-659dc04a64b0",
   "_class" : "org.challenge.model.School",
-  "schoolName" : "St. Aaron College"
+  "schoolName" : "School Name"
 }
 
 "result" Document
 {
   "_id" : "4e80c31f-b6c8-4c23-b9b9-23a468159730",
   "_class" : "org.challenge.model.Result",
-  "subject" : "numeracy",
+  "subject" : "Physics",
   "latestY3" : 413.55,
   "latestY5" : 494.25,
   "latestY7" : 0.0,
