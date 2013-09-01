@@ -1,12 +1,12 @@
 INTRODUCTION
 This is a one page Spring MVC(3.1) web application with the document-oriented database (MongoDB) as its persistence layer. Spring Data MongoDB is used to simplify the development with MongoDB access and AJAX is used to avoid page refreshes.
-Here it displays a short list of school results in tabular form filtered by either Numeracy, Spelling or Reading. Filtering can be applied by selecting from a subject drop-down, resulting in a change of table content.
+Here it displays a short list of school results in tabular form filtered by either Numeracy, Spelling or Reading. Filtering can be applied by selecting from a subject drop-down, resulting change the table content.
 Also sorting can be done on each table header by either in ascending or descending order based on subject selection.
 
 ABOUT THE PROJECT
 Please note that this project is developed to fulfill some requirements and I hope that this will cover most of it.
 Here I used two mongoDB collections and assume that there can be schools having multiple results based on its subject.
-Below is the sample Json structure of the School and Result documents.
+Below is the sample Json structure of the "school" and "result" documents.
 
 "school" Document
 {
