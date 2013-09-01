@@ -1,0 +1,68 @@
+INTRODUCTION
+This is a Spring MVC(3.1) one page web application that uses a document-oriented database (MongoDB) as its persistence layer. Spring Data MongoDB is used to simplify the development with MongoDB access and AJAX is used to avoid page refreshes.
+Here it displays a short list of school results in tabular form filtered by either Numeracy, Spelling or Reading. Filtering can be applied by selecting from a subject drop-down, resulting in a change of table content.
+Also sorting can be done on each table header by either in ascending or descending order based on subject selection.
+
+ABOUT THE PROJECT
+Please note that this project is developed to fulfill some requirements and I hope that this will cover most of it.
+Here I used two mongoDB collections and assume that there can be schools having multiple results based on its subject.
+Below is the sample Json structure of the School and Result documents.
+
+"school" Document
+{
+  "_id" : "1126282f-29f6-4234-a132-659dc04a64b0",
+  "_class" : "org.challenge.model.School",
+  "schoolName" : "St. Aaron College"
+}
+
+"result" Document
+{
+  "_id" : "4e80c31f-b6c8-4c23-b9b9-23a468159730",
+  "_class" : "org.challenge.model.Result",
+  "subject" : "numeracy",
+  "latestY3" : 413.55,
+  "latestY5" : 494.25,
+  "latestY7" : 0.0,
+  "latestY9" : 0.0,
+  "rawGainY3Y5" : 61.4917,
+  "factoredGainY3Y5" : 69.81,
+  "glgY3Y5" : 113.52757826,
+  "latestGainInGainY3Y5" : -7.0,
+  "school" : {
+    "$ref" : "school",
+    "$id" : "1126282f-29f6-4234-a132-659dc04a64b0"
+  }
+}
+
+The above school property is a reference to a School record as it indicated by $ref: school.
+
+THE STRUCTURE
+This project follows the Maven structure and therefore organized its logical layers as controller, service, domain and repository.
+The controller Layer contains MediatorController and ResultController classes. MediatorController is just to redirect requests to appropriate pages. ResultController is to handle human requests and will get the expected results of the schools.
+The Service Layer contains two services, ResultService and InitMongoService. The ResultService contains the business logic for the "result" collection and all data access is delegated to the repositories. InitMongoService is to initialize the database with sample set of data.
+The Domain Layer consist of two classes which represent the database collections "result" and "school". The Result class has a reference to a School property.
+The Repository Layer has two repositories. In other words it has two Data Access Objects (DAO). Spring will automatically provide the actual implementation with the help of Spring Data MongoDB. We only need to add method signature for custom methods and Spring Data will do the rest.
+
+Note: TraceInterceptor class is an AOP utility class to help us debug the application.
+
+CONFIGURATION
+spring-data.xml : enabled MongoDB repository, including template support, initialized MongoDB with sample data
+spring.properties : included the database properties
+applicationContext.xml : contains application based configuration
+
+
+HOW TO ACCESS
+1. Start Mongo DB Server. (No need to create any collections. Spring will automatically do it. InitMongoService will insert some sample data to run the application)
+2. Install Maven (Build the project)
+3. Place the coding-challenge.war file to deployment directory of the JBoss AS7 application server
+4. Enter the following URL in the browser. (http://localhost:8080/coding-challenge)
+
+TOOLS USED
+1. JavaScript
+2. JQuery
+3. Bootstrap 2.3.2
+4. Spring core 3.1 RELEASE
+5. Spring Data MongoDB
+6. MongoDB 2.4.6
+7. Maven
+8. JBoss AS7.1.1 Final
